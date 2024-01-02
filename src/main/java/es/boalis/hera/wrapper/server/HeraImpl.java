@@ -1,9 +1,7 @@
 package es.boalis.hera.wrapper.server;
 
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,6 +10,7 @@ public class HeraImpl {
     private String addr;
     private boolean secure;
     private String[]  args;
+    private StorageDao dao;
     private HeraImpl(){
 
     }
@@ -35,6 +34,12 @@ public class HeraImpl {
         this.args = args;
         return this;
     }
+
+    public HeraImpl withDao(StorageDao dao) {
+        this.dao = dao;
+        return this;
+    }
+
     public HeraImpl buildServer()throws Exception{
         var server = this.buildServer(this.addr,this.port,this.secure,this.args);
         this.listen(server);
@@ -49,7 +54,7 @@ public class HeraImpl {
        ExecutorService threadPool = Executors.newFixedThreadPool(120);
        while(true){
            Socket socket = server.accept();
-           var worker = new Worker(socket);
+           var worker = new Worker(socket, dao);
            threadPool.submit(worker);
        }
 

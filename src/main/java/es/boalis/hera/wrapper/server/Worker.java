@@ -1,15 +1,15 @@
 package es.boalis.hera.wrapper.server;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 
 public class Worker implements Runnable{
     private final Socket socket;
+    private final StorageDao dao;
 
-    public Worker(Socket socket) {
+    public Worker(Socket socket, StorageDao dao) {
         this.socket = socket;
+        this.dao = dao;
     }
 
     @Override
@@ -22,6 +22,8 @@ public class Worker implements Runnable{
                 if (beanParser == null){
                     break;
                 }
+                // set
+                dao.insert(beanParser);
             }
         } catch (Exception e) {
             e.printStackTrace();

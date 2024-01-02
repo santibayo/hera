@@ -58,7 +58,7 @@ public class Parser{
 
         var beanMessage = new BeanMessage(metric,value,timeStampLong);
         beanMessage.setTags(map);
-        System.out.println(beanMessage.toString());
+        //System.out.println(beanMessage.toString());
         return beanMessage;
     }
 
