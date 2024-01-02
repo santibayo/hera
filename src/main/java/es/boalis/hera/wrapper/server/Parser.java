@@ -55,8 +55,8 @@ public class Parser{
         }else{
             timeStampLong = Long.parseLong(timestamp);
         }
-
-        var beanMessage = new BeanMessage(metric,value,timeStampLong);
+        var floatValue = new Float(value);
+        var beanMessage = new BeanMessage(metric,floatValue,timeStampLong);
         beanMessage.setTags(map);
         //System.out.println(beanMessage.toString());
         return beanMessage;

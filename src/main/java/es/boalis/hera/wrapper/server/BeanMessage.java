@@ -4,12 +4,12 @@ import java.util.Map;
 
 public class BeanMessage {
     private String metric;
-    private String value;
+    private float value;
     private long timestamp;
 
     private Map<String,String> tags;
 
-    public BeanMessage(String metric, String value, long timestamp) {
+    public BeanMessage(String metric, float value, long timestamp) {
         this.metric = metric;
         this.value = value;
         this.timestamp = timestamp;
@@ -27,7 +27,7 @@ public class BeanMessage {
         return metric;
     }
 
-    public String getValue() {
+    public Float getValue() {
         return value;
     }
 
