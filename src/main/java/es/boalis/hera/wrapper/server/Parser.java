@@ -58,7 +58,6 @@ public class Parser{
         var floatValue = new Float(value);
         var beanMessage = new BeanMessage(metric,floatValue,timeStampLong);
         beanMessage.setTags(map);
-        //System.out.println(beanMessage.toString());
         return beanMessage;
     }
 

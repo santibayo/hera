@@ -39,7 +39,7 @@ public class FileStorageDao implements StorageDao {
         var stringy = new JSONObject(mesg);
         stack.push(stringy.toString());
         //log.info(stringy.toString());
-        log.info("buffer size: "+stack.size());
+        log.fine("buffer size: "+stack.size());
     }
     public synchronized void fire()throws IOException{
         log.info("flushing data");
